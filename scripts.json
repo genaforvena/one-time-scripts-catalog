@@ -1,0 +1,25 @@
+{
+  "scripts": [
+    {
+      "id": "drunk-walker",
+      "name": "🥴 Drunk Walker",
+      "description": "Автоматическая прогулка по Google Street View. Скрипт кликает в центр экрана, имитируя пьяного пешехода.",
+      "code": "(function(){\n  console.log('Drunk Walker started');\n  setInterval(() => {\n    const canvas = document.querySelector('canvas');\n    if (canvas) {\n      const rect = canvas.getBoundingClientRect();\n      const x = rect.left + rect.width / 2;\n      const y = rect.top + rect.height / 2;\n      const clickEvent = new MouseEvent('click', {\n        view: window,\n        bubbles: true,\n        cancelable: true,\n        clientX: x,\n        clientY: y\n      });\n      canvas.dispatchEvent(clickEvent);\n    }\n  }, 3000);\n})();",
+      "category": "fun",
+      "author": "genaforvena",
+      "url": "https://github.com/genaforvena/drunk-walker",
+      "instructions": "1. Открой Google Maps Street View\n2. Нажми F12 → Console\n3. Вставь код и Enter\n4. Нажми START",
+      "tags": ["maps", "random", "walk"]
+    },
+    {
+      "id": "yt-loop",
+      "name": "🔁 YouTube Looper",
+      "description": "Ставит текущее видео YouTube на повтор (без кнопки loop в интерфейсе).",
+      "code": "document.querySelector('video').loop = true; alert('Loop enabled!');",
+      "category": "video",
+      "author": "community",
+      "instructions": "Просто вставь код на странице с видео.",
+      "tags": ["youtube", "loop"]
+    }
+  ]
+}

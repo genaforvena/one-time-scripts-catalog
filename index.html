@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Time Scripts Catalog</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📜 One-Time Scripts</h1>
+            <p>Каталог полезных одноразовых скриптов для браузера</p>
+        </header>
+
+        <section class="controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Поиск скриптов по названию, описанию или тегам...">
+            </div>
+            <div class="filter-container" id="filterContainer">
+                <button class="filter-btn active" data-category="all">Все</button>
+                <!-- Категории будут добавлены динамически -->
+            </div>
+        </section>
+
+        <main class="scripts-grid" id="scriptsGrid">
+            <!-- Скрипты будут загружены сюда через JS -->
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
