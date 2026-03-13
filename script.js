@@ -57,15 +57,26 @@ document.addEventListener('DOMContentLoaded', () => {
         scripts.forEach(script => {
             const card = document.createElement('div');
             card.className = 'script-card';
+            const isTerminal = script.type === 'terminal';
+            const osBadges = script.os ? script.os.map(os => `<span class="badge badge-os"><i class="fab fa-${os}"></i> ${os}</span>`).join('') : '';
+            const sudoWarning = script.requires_sudo ? `<div class="sudo-warning"><i class="fas fa-shield-alt"></i> Requires Sudo</div>` : '';
+
             card.innerHTML = `
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.3rem;">
+                    <span class="badge ${isTerminal ? 'badge-terminal' : 'badge-browser'}">
+                        <i class="fas ${isTerminal ? 'fa-terminal' : 'fa-window-maximize'}"></i> ${script.type}
+                    </span>
+                    ${osBadges}
+                </div>
                 <h3>${script.name}</h3>
                 <p>${script.description}</p>
+                ${sudoWarning}
                 <div class="script-tags">
                     ${script.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
                 </div>
                 <div class="card-actions">
                     <button class="btn btn-primary btn-copy" data-code="${btoa(script.code)}">
-                        <i class="fas fa-copy"></i> Код
+                        <i class="fas fa-copy"></i> ${isTerminal ? 'Команда' : 'Код'}
                     </button>
                     <a href="script.html?id=${script.id}" class="btn btn-secondary">
                         <i class="fas fa-info-circle"></i> Инфо
@@ -110,12 +121,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.title = `${script.name} - One-Time Scripts`;
 
+        const isTerminal = script.type === 'terminal';
+        const osBadges = script.os ? script.os.map(os => `<span class="badge badge-os"><i class="fab fa-${os}"></i> ${os}</span>`).join('') : '';
+        const sudoWarning = script.requires_sudo ? `<div class="sudo-warning" style="margin-bottom: 1rem;"><i class="fas fa-shield-alt"></i> Requires Sudo</div>` : '';
+
         detailContainer.innerHTML = `
             <div class="detail-header">
                 <a href="index.html" style="text-decoration: none; color: var(--primary-color); margin-bottom: 1rem; display: inline-block;">
                     <i class="fas fa-arrow-left"></i> Назад в каталог
                 </a>
                 <h1>${script.name}</h1>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                    <span class="badge ${isTerminal ? 'badge-terminal' : 'badge-browser'}">
+                        <i class="fas ${isTerminal ? 'fa-terminal' : 'fa-window-maximize'}"></i> ${script.type}
+                    </span>
+                    ${osBadges}
+                </div>
             </div>
 
             <div class="detail-meta">
@@ -123,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span>Автор: <strong>${script.author}</strong></span>
                 ${script.url ? ` | <a href="${script.url}" target="_blank">GitHub автора</a>` : ''}
             </div>
+
+            ${sudoWarning}
 
             <div class="detail-section">
                 <h3>Описание</h3>
@@ -135,12 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
             <div class="detail-section">
-                <h3>Код скрипта</h3>
+                <h3>${isTerminal ? 'Команда' : 'Код скрипта'}</h3>
                 <div class="code-block">
                     <pre><code>${escapeHtml(script.code)}</code></pre>
                 </div>
                 <button class="btn btn-primary btn-copy" style="margin-top: 1rem; width: 100%; font-size: 1.1rem; padding: 1rem;" data-code="${btoa(script.code)}">
-                    <i class="fas fa-copy"></i> Копировать код
+                    <i class="fas fa-copy"></i> Копировать ${isTerminal ? 'команду' : 'код'}
                 </button>
             </div>
 

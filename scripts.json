@@ -2,6 +2,7 @@
   "scripts": [
     {
       "id": "yt-skip-ads",
+      "type": "browser",
       "name": "🎞️ Skip YouTube Ads",
       "description": "Автоматически пропускает рекламу на YouTube, нажимая на кнопку 'Пропустить'.",
       "code": "(function(){const skipAds=()=>{const skipBtn=document.querySelector('.ytp-ad-skip-button, .ytp-ad-skip-button-modern, .ytp-ad-skip-button-slot');if(skipBtn){skipBtn.click();console.log('YouTube Ad skipped! 🚀');}};setInterval(skipAds, 1000);})();",
@@ -12,6 +13,7 @@
     },
     {
       "id": "cookie-nuker",
+      "type": "browser",
       "name": "🍪 Cookie Banner Nuker",
       "description": "Удаляет назойливые баннеры куки и восстанавливает прокрутку страницы.",
       "code": "(function(){const selectors=['[class*=\"cookie\"]','[id*=\"cookie\"]','[class*=\"consent\"]','[id*=\"consent\"]','[class*=\"banner\"]','[id*=\"banner\"]','.qc-cmp2-container','#onetrust-consent-sdk'];selectors.forEach(sel=>{document.querySelectorAll(sel).forEach(el=>{if(el.innerText.toLowerCase().includes('cookie')||el.innerText.toLowerCase().includes('consent')){el.remove();}});});document.body.style.overflow='auto';document.documentElement.style.overflow='auto';})();",
@@ -22,6 +24,7 @@
     },
     {
       "id": "password-revealer",
+      "type": "browser",
       "name": "🔓 Password Revealer",
       "description": "Показывает пароли, скрытые за звездочками в полях ввода.",
       "code": "(function(){const passwords=document.querySelectorAll('input[type=\"password\"]');passwords.forEach(el=>el.type='text');})();",
@@ -32,6 +35,7 @@
     },
     {
       "id": "dark-mode-enforcer",
+      "type": "browser",
       "name": "🌑 Dark Mode Enforcer",
       "description": "Принудительно включает темную тему на любом сайте.",
       "code": "(function(){const style=document.createElement('style');style.id='dark-mode-enforcer';style.innerHTML='html { filter: invert(1) hue-rotate(180deg) !important; } img, video, canvas, iframe, [style*=\"background-image\"] { filter: invert(1) hue-rotate(180deg) !important; }';if(document.getElementById('dark-mode-enforcer')){document.getElementById('dark-mode-enforcer').remove();}else{document.head.appendChild(style);}})();",
@@ -42,6 +46,7 @@
     },
     {
       "id": "email-extractor",
+      "type": "browser",
       "name": "📧 Email Extractor",
       "description": "Находит все email-адреса на странице и копирует их в буфер обмена.",
       "code": "(function(){const emailRegex=/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/g;const emails=[...new Set(document.body.innerText.match(emailRegex))];if(emails.length>0){const list=emails.join('\\n');navigator.clipboard.writeText(list).then(()=>{alert(`Найдено и скопировано ${emails.length} email-адресов.`);});}else{alert('Email не найдены.');}})();",
@@ -52,6 +57,7 @@
     },
     {
       "id": "reading-time",
+      "type": "browser",
       "name": "📖 Reading Time Estimator",
       "description": "Показывает примерное время, необходимое для прочтения статьи на странице.",
       "code": "(function(){const text=document.body.innerText;const words=text.trim().split(/\\s+/).length;const time=Math.ceil(words/225);const div=document.createElement('div');div.style.cssText='position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,0.8);color:white;padding:10px 15px;border-radius:30px;z-index:99999;font-family:sans-serif;pointer-events:none;';div.innerText=`📖 ~${time} min read (${words} words)`;document.body.appendChild(div);setTimeout(()=>div.remove(),5000);})();",
@@ -62,6 +68,7 @@
     },
     {
       "id": "drunk-walker",
+      "type": "browser",
       "name": "🥴 Drunk Walker",
       "description": "Автоматическая прогулка по Google Street View. Скрипт кликает в центр экрана, имитируя пьяного пешехода.",
       "code": "(function(){console.log('Drunk Walker started');setInterval(()=>{const canvas=document.querySelector('canvas');if(canvas){const rect=canvas.getBoundingClientRect();const x=rect.left+rect.width/2;const y=rect.top+rect.height/2;const clickEvent=new MouseEvent('click',{view:window,bubbles:true,cancelable:true,clientX:x,clientY:y});canvas.dispatchEvent(clickEvent);}},3000);})();",
@@ -73,6 +80,7 @@
     },
     {
       "id": "yt-loop",
+      "type": "browser",
       "name": "🔁 YouTube Looper",
       "description": "Ставит текущее видео YouTube на повтор (без кнопки loop в интерфейсе).",
       "code": "document.querySelector('video').loop = true; alert('Loop enabled!');",
@@ -83,6 +91,7 @@
     },
     {
       "id": "ig-like-all",
+      "type": "browser",
       "name": "💖 Instagram Like All",
       "description": "Автоматически ставит лайки всем видимым постам в ленте или профиле.",
       "code": "(function(){const heartIcons=document.querySelectorAll('span[aria-label=\"Like\"] svg[aria-label=\"Like\"]');heartIcons.forEach((icon,index)=>{setTimeout(()=>{const button=icon.closest('button');if(button){button.click();console.log(`Liked post #${index+1}`);}},index*500);});alert(`Attempting to like ${heartIcons.length} posts!`);})();",
@@ -93,6 +102,7 @@
     },
     {
       "id": "li-connect-all",
+      "type": "browser",
       "name": "🤝 LinkedIn Connect All",
       "description": "Массово отправляет запросы на подключение в LinkedIn (раздел My Network).",
       "code": "(function(){const connectButtons=Array.from(document.querySelectorAll('button')).filter(btn=>btn.innerText.trim()==='Connect');connectButtons.forEach((btn,index)=>{setTimeout(()=>{btn.click();console.log(`Sent connection request #${index+1}`);},index*800);});alert(`Sending ${connectButtons.length} connection requests...`);})();",
@@ -103,6 +113,7 @@
     },
     {
       "id": "gh-clear-notifications",
+      "type": "browser",
       "name": "🗑️ GitHub Clear Notifications",
       "description": "Архивирует все уведомления на текущей странице GitHub.",
       "code": "(function(){const selectAll=document.querySelector('input[aria-label=\"Select all\"]');if(selectAll){selectAll.click();setTimeout(()=>{const archiveButton=document.querySelector('button[aria-label=\"Done\"], button[title=\"Done\"]');if(archiveButton){archiveButton.click();console.log('Notifications archived!');}else{alert('Could not find Archive/Done button.');}},500);}else{alert('No notifications found or select all checkbox not found.');}})();",
@@ -110,6 +121,20 @@
       "author": "genaforvena",
       "instructions": "1. Открой https://github.com/notifications\n2. Нажми F12 → Console\n3. Вставь код и Enter",
       "tags": ["github", "notifications", "cleanup"]
+    },
+    {
+      "id": "openclaw-installer",
+      "type": "terminal",
+      "name": "🦞 OpenClaw Installer",
+      "description": "One-command installer for OpenClaw on fresh Mac (installs Homebrew, Node.js, npm, and OpenClaw)",
+      "code": "curl -fsSL https://raw.githubusercontent.com/your-repo/main/scripts/openclaw.sh | bash",
+      "category": "dev-tools",
+      "author": "community",
+      "instructions": "1. Open Terminal (⌘+Space, type 'Terminal')\n2. Copy the command below\n3. Paste (⌘+V) and press Enter\n4. Follow any prompts",
+      "tags": ["mac", "installer", "dev", "node", "openclaw"],
+      "os": ["macos"],
+      "safe_to_run": true,
+      "requires_sudo": false
     }
   ]
 }

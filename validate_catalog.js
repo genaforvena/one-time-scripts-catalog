@@ -39,6 +39,14 @@ function validate() {
       console.error(`❌ Error in "${script.id}": Missing "code"`);
       errors++;
     }
+    if (!script.type || !['browser', 'terminal'].includes(script.type)) {
+      console.error(`❌ Error in "${script.id}": "type" must be "browser" or "terminal"`);
+      errors++;
+    }
+    if (script.os && !Array.isArray(script.os)) {
+      console.error(`❌ Error in "${script.id}": "os" must be an array`);
+      errors++;
+    }
   });
 
   if (errors === 0) {

@@ -138,6 +138,41 @@ header p {
     color: #555;
 }
 
+/* Badges */
+.badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 0.3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.badge-browser {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.badge-terminal {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.badge-os {
+    background: #333;
+    color: #fff;
+}
+
+.sudo-warning {
+    color: #d32f2f;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
 .card-actions {
     display: flex;
     gap: 0.5rem;
