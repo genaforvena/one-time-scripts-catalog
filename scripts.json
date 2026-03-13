@@ -127,14 +127,15 @@
       "type": "terminal",
       "name": "🦞 OpenClaw Installer",
       "description": "One-command installer for OpenClaw on fresh Mac (installs Homebrew, Node.js, npm, and OpenClaw)",
-      "code": "curl -fsSL https://raw.githubusercontent.com/your-repo/main/scripts/openclaw.sh | bash",
+      "code": "curl -fsSL https://raw.githubusercontent.com/genaforvena/one-time-scripts-catalog/main/scripts/openclaw-installer.sh | bash",
       "category": "dev-tools",
       "author": "community",
       "instructions": "1. Open Terminal (⌘+Space, type 'Terminal')\n2. Copy the command below\n3. Paste (⌘+V) and press Enter\n4. Follow any prompts",
       "tags": ["mac", "installer", "dev", "node", "openclaw"],
       "os": ["macos"],
       "safe_to_run": true,
-      "requires_sudo": false
+      "requires_sudo": false,
+      "raw_url": "https://raw.githubusercontent.com/genaforvena/one-time-scripts-catalog/main/scripts/openclaw-installer.sh"
     }
   ]
 }
