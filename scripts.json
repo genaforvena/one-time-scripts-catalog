@@ -1,10 +1,70 @@
 {
   "scripts": [
     {
+      "id": "yt-skip-ads",
+      "name": "🎞️ Skip YouTube Ads",
+      "description": "Автоматически пропускает рекламу на YouTube, нажимая на кнопку 'Пропустить'.",
+      "code": "(function(){const skipAds=()=>{const skipBtn=document.querySelector('.ytp-ad-skip-button, .ytp-ad-skip-button-modern, .ytp-ad-skip-button-slot');if(skipBtn){skipBtn.click();console.log('YouTube Ad skipped! 🚀');}};setInterval(skipAds, 1000);})();",
+      "category": "anti-annoyance",
+      "author": "community",
+      "instructions": "Запусти на странице с видео на YouTube.",
+      "tags": ["youtube", "ads", "skip"]
+    },
+    {
+      "id": "cookie-nuker",
+      "name": "🍪 Cookie Banner Nuker",
+      "description": "Удаляет назойливые баннеры куки и восстанавливает прокрутку страницы.",
+      "code": "(function(){const selectors=['[class*=\"cookie\"]','[id*=\"cookie\"]','[class*=\"consent\"]','[id*=\"consent\"]','[class*=\"banner\"]','[id*=\"banner\"]','.qc-cmp2-container','#onetrust-consent-sdk'];selectors.forEach(sel=>{document.querySelectorAll(sel).forEach(el=>{if(el.innerText.toLowerCase().includes('cookie')||el.innerText.toLowerCase().includes('consent')){el.remove();}});});document.body.style.overflow='auto';document.documentElement.style.overflow='auto';})();",
+      "category": "anti-annoyance",
+      "author": "community",
+      "instructions": "Запусти на любом сайте с баннером куки.",
+      "tags": ["cookies", "cleaner", "popup"]
+    },
+    {
+      "id": "password-revealer",
+      "name": "🔓 Password Revealer",
+      "description": "Показывает пароли, скрытые за звездочками в полях ввода.",
+      "code": "(function(){const passwords=document.querySelectorAll('input[type=\"password\"]');passwords.forEach(el=>el.type='text');})();",
+      "category": "security",
+      "author": "community",
+      "instructions": "Запусти на странице с полем ввода пароля.",
+      "tags": ["password", "security", "reveal"]
+    },
+    {
+      "id": "dark-mode-enforcer",
+      "name": "🌑 Dark Mode Enforcer",
+      "description": "Принудительно включает темную тему на любом сайте.",
+      "code": "(function(){const style=document.createElement('style');style.id='dark-mode-enforcer';style.innerHTML='html { filter: invert(1) hue-rotate(180deg) !important; } img, video, canvas, iframe, [style*=\"background-image\"] { filter: invert(1) hue-rotate(180deg) !important; }';if(document.getElementById('dark-mode-enforcer')){document.getElementById('dark-mode-enforcer').remove();}else{document.head.appendChild(style);}})();",
+      "category": "fun",
+      "author": "community",
+      "instructions": "Запусти на любом светлом сайте. Повторный запуск выключит темную тему.",
+      "tags": ["darkmode", "theme", "eyes"]
+    },
+    {
+      "id": "email-extractor",
+      "name": "📧 Email Extractor",
+      "description": "Находит все email-адреса на странице и копирует их в буфер обмена.",
+      "code": "(function(){const emailRegex=/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/g;const emails=[...new Set(document.body.innerText.match(emailRegex))];if(emails.length>0){const list=emails.join('\\n');navigator.clipboard.writeText(list).then(()=>{alert(`Найдено и скопировано ${emails.length} email-адресов.`);});}else{alert('Email не найдены.');}})();",
+      "category": "scraping",
+      "author": "community",
+      "instructions": "Запусти на странице, где есть контакты или список email.",
+      "tags": ["email", "scraping", "extraction"]
+    },
+    {
+      "id": "reading-time",
+      "name": "📖 Reading Time Estimator",
+      "description": "Показывает примерное время, необходимое для прочтения статьи на странице.",
+      "code": "(function(){const text=document.body.innerText;const words=text.trim().split(/\\s+/).length;const time=Math.ceil(words/225);const div=document.createElement('div');div.style.cssText='position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,0.8);color:white;padding:10px 15px;border-radius:30px;z-index:99999;font-family:sans-serif;pointer-events:none;';div.innerText=`📖 ~${time} min read (${words} words)`;document.body.appendChild(div);setTimeout(()=>div.remove(),5000);})();",
+      "category": "productivity",
+      "author": "community",
+      "instructions": "Запусти на странице со статьей или длинным текстом.",
+      "tags": ["reading", "time", "productivity"]
+    },
+    {
       "id": "drunk-walker",
       "name": "🥴 Drunk Walker",
       "description": "Автоматическая прогулка по Google Street View. Скрипт кликает в центр экрана, имитируя пьяного пешехода.",
-      "code": "(function(){\n  console.log('Drunk Walker started');\n  setInterval(() => {\n    const canvas = document.querySelector('canvas');\n    if (canvas) {\n      const rect = canvas.getBoundingClientRect();\n      const x = rect.left + rect.width / 2;\n      const y = rect.top + rect.height / 2;\n      const clickEvent = new MouseEvent('click', {\n        view: window,\n        bubbles: true,\n        cancelable: true,\n        clientX: x,\n        clientY: y\n      });\n      canvas.dispatchEvent(clickEvent);\n    }\n  }, 3000);\n})();",
+      "code": "(function(){console.log('Drunk Walker started');setInterval(()=>{const canvas=document.querySelector('canvas');if(canvas){const rect=canvas.getBoundingClientRect();const x=rect.left+rect.width/2;const y=rect.top+rect.height/2;const clickEvent=new MouseEvent('click',{view:window,bubbles:true,cancelable:true,clientX:x,clientY:y});canvas.dispatchEvent(clickEvent);}},3000);})();",
       "category": "fun",
       "author": "genaforvena",
       "url": "https://github.com/genaforvena/drunk-walker",
@@ -20,6 +80,36 @@
       "author": "community",
       "instructions": "Просто вставь код на странице с видео.",
       "tags": ["youtube", "loop"]
+    },
+    {
+      "id": "ig-like-all",
+      "name": "💖 Instagram Like All",
+      "description": "Автоматически ставит лайки всем видимым постам в ленте или профиле.",
+      "code": "(function(){const heartIcons=document.querySelectorAll('span[aria-label=\"Like\"] svg[aria-label=\"Like\"]');heartIcons.forEach((icon,index)=>{setTimeout(()=>{const button=icon.closest('button');if(button){button.click();console.log(`Liked post #${index+1}`);}},index*500);});alert(`Attempting to like ${heartIcons.length} posts!`);})();",
+      "category": "social",
+      "author": "genaforvena",
+      "instructions": "1. Открой Instagram ленту или профиль\n2. Нажми F12 → Console\n3. Вставь код и Enter",
+      "tags": ["instagram", "likes", "automation"]
+    },
+    {
+      "id": "li-connect-all",
+      "name": "🤝 LinkedIn Connect All",
+      "description": "Массово отправляет запросы на подключение в LinkedIn (раздел My Network).",
+      "code": "(function(){const connectButtons=Array.from(document.querySelectorAll('button')).filter(btn=>btn.innerText.trim()==='Connect');connectButtons.forEach((btn,index)=>{setTimeout(()=>{btn.click();console.log(`Sent connection request #${index+1}`);},index*800);});alert(`Sending ${connectButtons.length} connection requests...`);})();",
+      "category": "social",
+      "author": "genaforvena",
+      "instructions": "1. Открой страницу https://www.linkedin.com/mynetwork/\n2. Нажми F12 → Console\n3. Вставь код и Enter",
+      "tags": ["linkedin", "networking", "automation"]
+    },
+    {
+      "id": "gh-clear-notifications",
+      "name": "🗑️ GitHub Clear Notifications",
+      "description": "Архивирует все уведомления на текущей странице GitHub.",
+      "code": "(function(){const selectAll=document.querySelector('input[aria-label=\"Select all\"]');if(selectAll){selectAll.click();setTimeout(()=>{const archiveButton=document.querySelector('button[aria-label=\"Done\"], button[title=\"Done\"]');if(archiveButton){archiveButton.click();console.log('Notifications archived!');}else{alert('Could not find Archive/Done button.');}},500);}else{alert('No notifications found or select all checkbox not found.');}})();",
+      "category": "dev",
+      "author": "genaforvena",
+      "instructions": "1. Открой https://github.com/notifications\n2. Нажми F12 → Console\n3. Вставь код и Enter",
+      "tags": ["github", "notifications", "cleanup"]
     }
   ]
 }
